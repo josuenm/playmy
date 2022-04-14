@@ -1,17 +1,22 @@
 import { ThemeProvider } from 'styled-components'
 import { theme } from 'src/styles/theme'
-import GlobalStyle from './styles/GlobalStyle';
 import { Header } from 'src/components/Header';
+import GlobalStyle from './styles/GlobalStyle';
+import Home from 'src/pages/Home';
+import { CartProvider } from './contexts/cart';
 
 
 
 function App() {
 
   return (
-    <ThemeProvider theme={theme}>
-      <Header />
-      <GlobalStyle />
-    </ThemeProvider>
+    <CartProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Header />
+        <Home />
+      </ThemeProvider>
+    </CartProvider>
   );
 }
 

@@ -1,13 +1,19 @@
 import styled from 'styled-components'
 
 
-export const Container = styled.div`
+
+interface ContainerProps {
+    "data-hover": string;
+}
+
+
+export const Container = styled.div<ContainerProps>`
     position: relative;
     cursor: pointer;
 
     &:hover {
         svg {
-            color: ${({ theme }) => theme.colors.primary};
+            color: ${(props) => !!props['data-hover']? props['data-hover'] : ''};
         }
     }
     

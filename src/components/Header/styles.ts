@@ -2,11 +2,16 @@ import styled from 'styled-components';
 
 
 export const Container = styled.header`
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+
     padding: 1rem 0;
     width: 100%;
     background: ${({ theme }) => theme.colors.blue90};
     box-shadow: 0px 0px 15px 0 #101010;
-    border-bottom: 1px solid #1a242b;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.line90};
 `
 
 
@@ -34,6 +39,7 @@ export const Logo = styled.h1`
 
 export const Search = styled.div`
     position: relative;
+    width: 400px;
     background: ${({ theme }) => theme.colors.secondary};
     border-radius: .25rem;
 
