@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Head } from "src/components/Head";
 import { 
     CartItem, 
     CartItemImageContainer, 
@@ -43,6 +44,11 @@ export function Cart() {
 
     return (
         <Container>
+            <Head 
+              title="Carrinho - PLAYMY" 
+              description="Pagamentos seguros e rápidos." 
+            />
+
             <CartItemsList>
                 <>
                     {cartItems.map(item => (
@@ -94,7 +100,9 @@ export function Cart() {
                         }).format(totalPrice)}
                     </h2>
 
-                    <OrderButton type="button">Finalizar Pedido</OrderButton>
+                    <OrderButton type="button" disabled={totalPrice === 0}>
+                        Finalizar Pedido
+                    </OrderButton>
                 </OrderContainer>
             </Checkout>
         </Container>

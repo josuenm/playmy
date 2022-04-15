@@ -7,6 +7,10 @@ export const Container = styled.div`
     height: 270px;
     background: ${({ theme }) => theme.colors.secondary};
     border-radius: .25rem;
+
+    @media (max-width: 575.98px) {
+        width: 280px;
+    }
 `
 
 
@@ -36,6 +40,11 @@ export const Title = styled.h3`
     color: #fff;
     font-size: 1rem;
     font-weight: ${({ theme }) => theme.fontWeight.regular};
+    
+    @media (max-width: 575.98px) {
+        padding: 1rem .5rem;
+        font-size: .9rem;
+    }
 `
 
 
@@ -114,13 +123,27 @@ export const Score = styled.div`
     border: 1px solid ${({ theme }) => theme.colors.line70};
 
     transition: ease .3s all;
-    &:hover {
-        filter: brightness(1.2);
+    @media (min-width: 991.99px) {
+        &:hover {
+            filter: brightness(1.2);
 
-        .feedback {
-            visibility: visible;
-            opacity: 1;
-            bottom: calc(-30px - .4rem);
+            .feedback {
+                visibility: visible;
+                opacity: 1;
+                bottom: calc(-30px - .4rem);
+            }
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        &.active {
+            filter: brightness(1.2);
+
+            .feedback {
+                visibility: visible;
+                opacity: 1;
+                bottom: calc(-30px - .4rem);
+            }
         }
     }
 `

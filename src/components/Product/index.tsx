@@ -63,6 +63,8 @@ export function Product(
         localStorage.setItem('cart', JSON.stringify(newCart))
         setTotal(newCart.length)
     }
+
+    const [mobileScore, setMobileScore] = useState(false)
     
     return (
         <Container {...rest}>
@@ -98,7 +100,10 @@ export function Product(
                         }).format(price)}
                     </Price>
 
-                    <Score>
+                    <Score 
+                      className={mobileScore?'active':''} 
+                      onClick={() => setMobileScore(!mobileScore)}
+                    >
                         {score}
 
                         <FeedbackRequired className="feedback">

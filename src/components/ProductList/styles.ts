@@ -6,6 +6,10 @@ export const Container = styled.div`
     justify-content: center;
     gap: 3rem;
     flex-wrap: wrap;
+
+    @media (max-width: 575.98px) {
+        gap: 3.5rem 1rem;
+    }
 `
 
 export const FeedbackRequired = styled.div`

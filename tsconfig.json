@@ -25,6 +25,7 @@
       "src/styles/*": ["./src/styles/*"],
       "src/pages/*": ["./src/pages/*"],
       "src/contexts/*": ["./src/contexts/*"],
+      "src/services/*": ["./src/services/*"],
     }
   },
   "include": [

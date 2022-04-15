@@ -5,9 +5,13 @@ import styled from 'styled-components'
 export const Container = styled.div`
     max-width: 1120px;
     width: 100%;
-    height: fit-content;
+    height: 100vh;
     margin: 0 auto;
     display: flex;
+
+    @media (max-width: 991.98px) {
+        flex-direction: column;
+    }
 `
 
 
@@ -29,6 +33,10 @@ export const CartItem = styled.div`
     
     &:first-of-type {
         border-top: 1px solid ${({ theme }) => theme.colors.line70};
+    }
+
+    @media (max-width: 991.98px) {
+        padding: 1rem;
     }
 `
 
@@ -81,6 +89,15 @@ export const Checkout = styled.aside`
         padding: 0;
         margin: 0;
         margin-bottom: 3rem;
+    }
+
+    @media (max-width: 991.98px) {
+        box-shadow: none;
+        padding: 3rem 1rem;
+        margin: 0 auto;
+        justify-content: flex-start;
+        gap: 3rem;
+        width: 100%;
     }
 `
 
@@ -140,5 +157,10 @@ export const OrderButton = styled.button`
     transition: ease all .4s;
     &:hover {
         filter: brightness(1.2);
+    }
+
+    &:disabled {
+        pointer-events: none;
+        opacity: .4;
     }
 `

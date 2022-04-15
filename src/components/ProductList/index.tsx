@@ -20,7 +20,6 @@ interface ProductListProps {
 
 export function ProductList({ productList }: ProductListProps) {
 
-
     const feedbackRef = useRef<any>(false);
     const {
         feedbackSuccess,
@@ -39,6 +38,8 @@ export function ProductList({ productList }: ProductListProps) {
     return (
         <Container>
             {productList.map((item, index) => (
+
+                item !== undefined && (
                 <Product 
                   image={item.image} 
                   title={item.name} 
@@ -47,7 +48,7 @@ export function ProductList({ productList }: ProductListProps) {
                   id={item.id}
                   key={item.id} 
                   index={index}
-                />
+                />)
             ))}
 
             <FeedbackRequired className={feedbackSuccess?'active':''}>

@@ -23,6 +23,10 @@ export const Content = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 1199.99px) {
+        padding-inline: 1rem;
+    }
 `
 
 
@@ -30,6 +34,10 @@ export const Logo = styled.h1`
     text-align: center;
     color: #fff;
     font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+    @media (max-width: 575.98px) {
+        font-size: 1.5rem;
+    }
 
     span {
         color: ${({ theme }) => theme.colors.primary};
@@ -42,6 +50,10 @@ export const Search = styled.div`
     width: 400px;
     background: ${({ theme }) => theme.colors.secondary};
     border-radius: .25rem;
+
+    @media (max-width: 575.98px) {
+        width: 50%;
+    }
 
     input {
         background: transparent;

@@ -1,24 +1,30 @@
 import { Container } from "src/styles/pages/HomeStyles";
 import { ProductList } from "src/components/ProductList";
-import { api } from "src/services/products";
-import { useEffect, useState } from "react";
+import { Head } from "src/components/Head";
 
 
+type ProductProps = {
+    id: number;
+    image: string;
+    name: string;
+    price: number;
+    score: number;
+}
 
-export default function Home() {
 
-    const [products, setProducts] = useState([])
+interface HomeProps {
+    products: ProductProps[];
+}
 
-    useEffect(() => {
-        async function loadProducts() {
-            let response = await api.getProducts()
-            setProducts(response.data)
-        }
-        loadProducts()
-    }, [])
 
+export default function Home({ products }: HomeProps) {
     return(
         <Container>
+            <Head 
+              title="Home - PLAYMY" 
+              description="Os melhores preços dos mercado, peça já o seu." 
+            />
+
             <ProductList productList={products} />
         </Container>
     )
