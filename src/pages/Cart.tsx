@@ -31,8 +31,11 @@ export function Cart() {
     const [totalPrice, setTotalPrice] = useState(0)
 
     useEffect(() => {
+        if(!localStorage.getItem('cart')) localStorage.setItem('cart', JSON.stringify([]));
+
         let localCart = JSON.parse(localStorage.getItem('cart') as string)
         setCartItems(localCart)
+
         let price = 0
         localCart.forEach((item: { price: number; }) => {
             price = price + item.price

@@ -36,6 +36,8 @@ export function CartProvider({ children }: CartProviderProps) {
 
     useEffect(() => {
         setCart(JSON.parse(localStorage.getItem('cart') as string) || [])
+        
+        if(!localStorage.getItem('cart')) localStorage.setItem('cart', JSON.stringify([]))
     }, [])
 
     return (
