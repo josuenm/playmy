@@ -56,9 +56,3 @@ export const Search = styled.div`
         }
     }
 `
-
-
-export const Selected = styled.div`
-    display: flex;
-    gap: 0 2rem;
-`
