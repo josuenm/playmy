@@ -69,7 +69,7 @@ export function CartProvider({ children }: CartProviderProps) {
     function removeToCart(id: number) {
         let index = cart.findIndex((item) => item.id === id)
         let newCart = cart
-        newCart.splice(index)
+        newCart.splice(index, 1)
         setCart(newCart)
         
         setCartStorage()

@@ -21,7 +21,6 @@ import {
 import { CartContext, CartStateProps } from "src/contexts/cart";
 
 
-
 export function Cart() {
 
     const [totalPrice, setTotalPrice] = useState(0)
@@ -64,10 +63,10 @@ export function Cart() {
                                 </Price>
                             </Info>
                             <Trash onClick={() => removeToCart(Number(item.id))}>
-                                    <Icon 
-                                        isNotification={false}
-                                        IconElement={DeleteIcon} />
-                                </Trash>
+                                <Icon 
+                                    isNotification={false}
+                                    IconElement={DeleteIcon} />
+                            </Trash>
                         </CartItem>
                     ))}
                 </>
