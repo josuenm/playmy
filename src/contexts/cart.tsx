@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react"
+import { createContext, ReactNode, useEffect, useRef, useState } from "react"
 
 
 interface CartProviderProps {
@@ -16,11 +16,10 @@ type CartContextData = {
 
 export interface CartStateProps {
     cart: CartContextData[];
-    setCart: React.Dispatch<React.SetStateAction<never[]>>;
     feedbackSuccess: boolean;
-    setFeedbackSuccess: React.Dispatch<React.SetStateAction<boolean>>;
-    total: number;
-    setTotal: React.Dispatch<React.SetStateAction<number>>;
+    addToCart: (data: CartContextData) => void;
+    removeToCart: (id: number) => void;
+    cartTotal: number;
 }
 
 
@@ -31,18 +30,70 @@ export const CartContext =
 export function CartProvider({ children }: CartProviderProps) {
 
     const [feedbackSuccess, setFeedbackSuccess] = useState(false)
-    const [cart, setCart] = useState([])
-    const [total, setTotal] = useState(cart.length)
+    const [cart, setCart] = useState<CartContextData[]>([])
+    const [cartTotal, setCartTotal] = useState(0)
+    const feedbackRef = useRef<any>(null);
+
+    function handleTotal(total: number) {
+        setCartTotal(total)
+    }
+
+    function handleFeedback() {
+        setFeedbackSuccess(true)
+
+        clearTimeout(feedbackRef.current)
+
+        feedbackRef.current = setTimeout(
+            () => {
+                setFeedbackSuccess(false)
+            }, 1800
+        )
+    }
+
+
+    function setCartStorage() {
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }
+
+    function addToCart(data: CartContextData) {
+        let newCart = cart
+        newCart.push(data)
+        setCart(newCart)
+
+        setCartStorage()
+        handleFeedback()
+        handleTotal(newCart.length)
+    }
+
+
+    function removeToCart(id: number) {
+        let index = cart.findIndex((item) => item.id === id)
+        let newCart = cart
+        newCart.splice(index)
+        setCart(newCart)
+        
+        setCartStorage()
+        handleTotal(newCart.length)
+    }
+
 
     useEffect(() => {
-        setCart(JSON.parse(localStorage.getItem('cart') as string) || [])
-        
-        if(!localStorage.getItem('cart')) localStorage.setItem('cart', JSON.stringify([]))
+        if(!!localStorage.getItem('cart') === false) {
+            localStorage.setItem('cart', JSON.stringify([]))
+        }
+
+        let initialCart = JSON.parse(localStorage.getItem('cart') as string)
+
+        setCart(initialCart)
+        setCartTotal(initialCart.length)
+
     }, [])
+
+
 
     return (
         <CartContext.Provider value={{
-            cart, setCart, feedbackSuccess, setFeedbackSuccess, total, setTotal
+            cart, feedbackSuccess, addToCart, removeToCart, cartTotal
         }}>
             {children}
         </CartContext.Provider>

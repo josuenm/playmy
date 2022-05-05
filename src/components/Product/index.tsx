@@ -30,38 +30,23 @@ interface ProductProps {
 export function Product(
     { image: Img, title, price, score, id, index, ...rest }: ProductProps) {
 
-
     const [inCart, setInCart] = useState(false)
     
-    const { cart, setCart, setTotal } = useContext(CartContext) as CartStateProps
-    const { setFeedbackSuccess } = useContext(CartContext) as CartStateProps
+    const { cart, addToCart, removeToCart } = useContext(CartContext) as CartStateProps
 
     useEffect(() => {
-        setInCart(cart.some(((item: { id: number; }) => item.id === id)))
+        setInCart(cart.filter(item => item.id === id).length > 0?true:false)
     }, [cart, id])
-
-    let newCart = cart
 
     function handleCart() {
         setInCart(!inCart)
 
-        if(!inCart) {
-            newCart.push({
-                id,
-                price,
-                image: Img,
-                name: title,
-            })
-            setCart(newCart as never[])
-
-            setFeedbackSuccess(true)
+        if(inCart) {
+            removeToCart(id)
         } else {
-            newCart.splice(index)
-            setCart(newCart as never[])
+            addToCart({id,price,image: Img,name: title,})
         }
 
-        localStorage.setItem('cart', JSON.stringify(newCart))
-        setTotal(newCart.length)
     }
 
     const [mobileScore, setMobileScore] = useState(false)

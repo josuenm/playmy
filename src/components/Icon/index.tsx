@@ -1,23 +1,28 @@
 import { Container } from "./styles";
+import { CartContext, CartStateProps } from "src/contexts/cart";
+import { useContext } from "react"
+
 
 
 interface IconProps {
     IconElement: any;
-    notification?: number;
     isNotification: boolean;
     hoverColor?: string;
 }
 
 
 export function Icon({ 
-    IconElement, notification = 0, isNotification, hoverColor = ''}: IconProps) {
+    IconElement, isNotification, hoverColor = ''}: IconProps) {
+
+
+    const { cartTotal } = useContext(CartContext) as CartStateProps
+
 
     return (
         <Container data-hover={hoverColor}>
-            {isNotification && notification > 0 && (
-                <div className="notification">{notification}</div>
+            {isNotification && cartTotal > 0 && (
+                <div className="notification">{cartTotal}</div>
             )}
-
 
             <IconElement className="icon" />
         </Container>

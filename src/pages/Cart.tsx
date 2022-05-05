@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Head } from "src/components/Head";
+import { Icon } from "src/components/Icon";
+import DeleteIcon from '@mui/icons-material/Delete';
 import { 
     CartItem, 
     CartItemImageContainer, 
@@ -13,37 +15,27 @@ import {
     Order,
     OrderContainer,
     CheckoutHeader,
-    OrderButton, 
+    OrderButton,
+    Trash, 
 } from "src/styles/pages/CartStyles";
+import { CartContext, CartStateProps } from "src/contexts/cart";
 
-
-type CartItemProps = {
-    id: string;
-    name: string;
-    price: number;
-    image: string;
-}
 
 
 export function Cart() {
 
-    const [cartItems, setCartItems] = useState<CartItemProps[]>([])
     const [totalPrice, setTotalPrice] = useState(0)
+    const { cart, removeToCart, cartTotal } = useContext(CartContext) as CartStateProps
+
 
     useEffect(() => {
-        if(!localStorage.getItem('cart')) localStorage.setItem('cart', JSON.stringify([]));
-
-        let localCart = JSON.parse(localStorage.getItem('cart') as string)
-        setCartItems(localCart)
-
         let price = 0
-        localCart.forEach((item: { price: number; }) => {
+        cart.forEach((item: { price: number; }) => {
             price = price + item.price
         })
         setTotalPrice(price)
-    }, [])
+    }, [cart, cartTotal])
 
-    
 
     return (
         <Container>
@@ -54,7 +46,7 @@ export function Cart() {
 
             <CartItemsList>
                 <>
-                    {cartItems.map(item => (
+                    {cart.map(item => (
                         <CartItem key={item.id}>
                             <CartItemImageContainer>
                                 <img 
@@ -71,6 +63,11 @@ export function Cart() {
                                     }).format(item.price)}
                                 </Price>
                             </Info>
+                            <Trash onClick={() => removeToCart(Number(item.id))}>
+                                    <Icon 
+                                        isNotification={false}
+                                        IconElement={DeleteIcon} />
+                                </Trash>
                         </CartItem>
                     ))}
                 </>
@@ -80,7 +77,7 @@ export function Cart() {
                     <h1 className="title">Checkout</h1>
 
                     <ListOrders>
-                        {cartItems.map(item => (
+                        {cart.map(item => (
                             <Order className="item" key={item.id}>
                                 <h6 className="name">{item.name}</h6>
 

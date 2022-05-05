@@ -36,7 +36,7 @@ function App() {
     <CartProvider>
       <ThemeProvider theme={theme}>
         <Router>
-                
+
           <GlobalStyle />
           <Header setProducts={setProducts} />
 

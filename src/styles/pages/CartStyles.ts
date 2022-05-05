@@ -26,6 +26,7 @@ export const CartItemsList = styled.div`
 export const CartItem = styled.div`
     width: 100%;
     display: flex;
+    align-items: center;
     gap: 3rem;
     padding: 1rem 0;
     
@@ -53,6 +54,24 @@ export const CartItemImageContainer = styled.div`
     }
 `
 
+export const Trash = styled.div`
+    margin-left: auto;
+    margin-right: 1rem;
+    background-color: #ff5e5e;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 50px;
+    height: 50px;
+    border-radius: .25rem;
+
+    transition: ease .4s all;
+    &:hover {
+        filter: brightness(1.2);
+    }
+`
 
 export const Info = styled.div`
     display: flex;
@@ -164,3 +183,5 @@ export const OrderButton = styled.button`
         opacity: .4;
     }
 `
+
+

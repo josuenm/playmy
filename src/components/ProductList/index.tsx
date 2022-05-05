@@ -1,4 +1,4 @@
-import { useRef, useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CartContext, CartStateProps } from "src/contexts/cart";
 import { Container, FeedbackRequired } from "./styles";
 import { Product } from "src/components/Product";
@@ -20,21 +20,10 @@ interface ProductListProps {
 
 export function ProductList({ productList }: ProductListProps) {
 
-    const feedbackRef = useRef<any>(false);
     const {
         feedbackSuccess,
-        setFeedbackSuccess
     } = useContext(CartContext) as CartStateProps
 
-    useEffect(() => {
-        if(feedbackSuccess) {
-            feedbackRef.current = setTimeout(
-                () => setFeedbackSuccess(false), 1800
-            )
-        }
-    }, [feedbackSuccess, setFeedbackSuccess])
-
-    
     return (
         <Container>
             {productList.map((item, index) => (
