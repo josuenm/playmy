@@ -10,7 +10,7 @@ Neste desafio da Supera foi determinado que o objetivo seria um ecommerce fronte
 
 ### Checkout:
 
-![image](https://user-images.githubusercontent.com/83486074/163635389-82dab82a-7459-4a38-97ec-012500ae5aa1.png)
+![image](https://user-images.githubusercontent.com/83486074/167237709-0d664960-d755-45e4-9b88-b7c7aaba7b7f.png)
 
 ### Home Mobile:
 
@@ -18,7 +18,7 @@ Neste desafio da Supera foi determinado que o objetivo seria um ecommerce fronte
 
 ### Checkout Mobile:
 
-![image](https://user-images.githubusercontent.com/83486074/163635652-ae4ef022-0c2a-4075-b213-883db68a555d.png)
+![image](https://user-images.githubusercontent.com/83486074/167237725-c33821de-2172-41f3-a727-7aad9f9d7307.png)
 
 ## Ferramentas e frameworks 🚀
 
